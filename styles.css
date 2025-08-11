@@ -499,6 +499,18 @@ body::after { content: none; }
     line-height: 1.5;
 }
 
+/* Стили ссылок в контактах: золотые, без подчёркивания */
+.contact-info a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 600;
+}
+.contact-info a:hover,
+.contact-info a:focus {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
 .footer-bottom {
     max-width: 800px;
     margin: 0 auto;
