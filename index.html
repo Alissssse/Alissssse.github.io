@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Китай-город - Отслеживание посылок</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Логотип в виде пагоды -->
+    <div class="logo" aria-label="Китай-город">
+        <svg class="logo-icon" viewBox="0 0 64 64" width="56" height="56" role="img" aria-hidden="true" focusable="false">
+            <defs>
+                <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#DC143C"/>
+                    <stop offset="100%" stop-color="#B22222"/>
+                </linearGradient>
+            </defs>
+            <g>
+                <rect x="22" y="8" width="20" height="6" rx="2" fill="#8B0000" stroke="#FFD700" stroke-width="1"/>
+                <ellipse cx="32" cy="32" rx="18" ry="20" fill="url(#logoGrad)" stroke="#FFD700" stroke-width="2"/>
+                <rect x="22" y="50" width="20" height="6" rx="2" fill="#8B0000" stroke="#FFD700" stroke-width="1"/>
+                <line x1="32" y1="56" x2="32" y2="62" stroke="#FFD700" stroke-width="2"/>
+            </g>
+        </svg>
+        <span class="logo-text">Китай-город</span>
+    </div>
+
+    <!-- Декоративные фигуры по углам -->
+    <div class="decorations" aria-hidden="true">
+        <svg class="decor decor-cloud" viewBox="0 0 260 160" width="260" height="160" focusable="false">
+            <path d="M20 110c20-36 110-48 150-30c10-30 60-42 80-10c-28-18-54 6-54 24c-50-26-108-12-128 18c-18-6-28 0-48-2z" fill="#FFD700" fill-opacity="0.06"/>
+        </svg>
+        <svg class="decor decor-waves" viewBox="0 0 240 140" width="240" height="140" focusable="false">
+            <path d="M0 90q20-12 40 0t40 0t40 0t40 0t40 0" fill="none" stroke="#DC143C" stroke-opacity="0.08" stroke-width="2"/>
+            <path d="M0 110q20-12 40 0t40 0t40 0t40 0t40 0" fill="none" stroke="#FFD700" stroke-opacity="0.10" stroke-width="2"/>
+        </svg>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Китай-город: отслеживание посылок</h1>
+            <p class="subtitle">Быстрое и надежное отслеживание ваших посылок из Китая</p>
+        </header>
+
+        <!-- Форма отслеживания -->
+        <div class="tracking-form">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="trackingInput" 
+                    placeholder="Введите трек-номер" 
+                    class="tracking-input"
+                    maxlength="20"
+                >
+                <button id="trackButton" type="button" class="track-button">
+                    <span class="button-text">Отследить</span>
+                    <div class="button-decoration"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Результат отслеживания -->
+        <div id="trackingResult" class="tracking-result hidden">
+            <div class="result-header">
+                <h2 id="resultTitle" class="result-title"></h2>
+                <div class="tracking-number-display">
+                    <span class="label">Трек-номер:</span>
+                    <span id="displayTrackingNumber" class="number"></span>
+                </div>
+            </div>
+            
+            <!-- Метаданные партии -->
+            <div class="batch-meta">
+                <div class="meta-item"><span class="meta-label">Дата отправки:</span> <span id="dateText" class="meta-value"></span></div>
+                <div class="meta-item"><span class="meta-label">Номер отправки:</span> <span id="batchIdText" class="meta-value"></span></div>
+            </div>
+
+            <!-- Шкала прогресса -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step" data-status="Отправлен из Китая">
+                        <div class="step-icon">🇨🇳</div>
+                        <span class="step-text">Отправлен из Китая</span>
+                    </div>
+                    <div class="step" data-status="Прошел таможенный контроль">
+                        <div class="step-icon">🛃</div>
+                        <span class="step-text">Таможня</span>
+                    </div>
+                    <div class="step" data-status="В пути по России">
+                        <div class="step-icon">🚚</div>
+                        <span class="step-text">В пути</span>
+                    </div>
+                    <div class="step" data-status="Прибыл на склад в Москве">
+                        <div class="step-icon">🏢</div>
+                        <span class="step-text">На складе</span>
+                    </div>
+                    <div class="step" data-status="Готов к выдаче">
+                        <div class="step-icon">📦</div>
+                        <span class="step-text">Готов к выдаче</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Текущий статус -->
+            <div class="current-status">
+                <h3>Текущий статус:</h3>
+                <p id="currentStatusText" class="status-text"></p>
+            </div>
+        </div>
+
+        <!-- Сообщение об ошибке -->
+        <div id="errorMessage" class="error-message hidden">
+            <div class="error-icon">❌</div>
+            <p>Посылка не найдена. Проверьте правильность номера.</p>
+        </div>
+
+        <!-- Информация о сервисе -->
+        <div class="service-info">
+            <h3>О нашем сервисе</h3>
+            <p>Компания "Китай-город" специализируется на доставке товаров из Китая в Россию. 
+            Мы обеспечиваем быструю и надежную доставку с полным отслеживанием на каждом этапе.</p>
+        </div>
+    </div>
+
+    <!-- Футер с контактами -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h4>Контакты</h4>
+                <p>📞 Телефон: +7 (495) 123-45-67</p>
+                <p>📧 Email: info@kitay-gorod.ru</p>
+                <p>📍 Адрес: ул. Китайгородская, д. 1, Москва</p>
+            </div>
+            <div class="working-hours">
+                <h4>Режим работы</h4>
+                <p>Пн-Пт: 9:00 - 18:00</p>
+                <p>Сб: 10:00 - 16:00</p>
+                <p>Вс: Выходной</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Китай-город. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

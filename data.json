@@ -1,0 +1,42 @@
+[
+    {
+      "tracking_number": "CN123456789",
+      "status": "Отправлен из Китая"
+    },
+    {
+      "tracking_number": "CN987654321",
+      "status": "Прошел таможенный контроль"
+    },
+    {
+      "tracking_number": "CN555666777",
+      "status": "В пути по России"
+    },
+    {
+      "tracking_number": "CN111222333",
+      "status": "Прибыл на склад в Москве"
+    },
+    {
+      "tracking_number": "CN444555666",
+      "status": "Готов к выдаче"
+    },
+    {
+      "tracking_number": "CN777888999",
+      "status": "Отправлен из Китая"
+    },
+    {
+      "tracking_number": "CN000111222",
+      "status": "Прошел таможенный контроль"
+    },
+    {
+      "tracking_number": "CN333444555",
+      "status": "В пути по России"
+    },
+    {
+      "tracking_number": "CN666777888",
+      "status": "Прибыл на склад в Москве"
+    },
+    {
+      "tracking_number": "CN999000111",
+      "status": "Готов к выдаче"
+    }
+  ]

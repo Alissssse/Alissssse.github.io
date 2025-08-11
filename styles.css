@@ -1,0 +1,571 @@
+ /* Основные стили и китайская тематика */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif SC', serif;
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #B22222 100%);
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+    color: #333;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Китайские узоры на фоне */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 215, 0, 0.03) 20px, rgba(255, 215, 0, 0.03) 40px),
+        repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255, 215, 0, 0.03) 20px, rgba(255, 215, 0, 0.03) 40px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Декор перенесён в HTML (см. .decorations в index.html) */
+body::after { content: none; }
+/* Декор-слой */
+.decorations {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+.decor { position: absolute; }
+.decor-cloud { top: -40px; right: -60px; }
+
+.decor-waves { right: 10%; bottom: -40px; }
+
+/* Логотип-пагода */
+.logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 2px solid #FFD700;
+}
+
+.logo-icon { display: block; margin-bottom: 6px; }
+/* Удаляем прежнюю стилизацию "пагоды" */
+
+.logo-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8B0000;
+    text-align: center;
+}
+
+/* Основной контейнер */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 120px 20px 40px;
+}
+
+/* Заголовок */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 3px solid #FFD700;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+/* Учитываем предпочтения пользователя по анимациям */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 400;
+}
+
+/* Форма отслеживания */
+.tracking-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 3px solid #FFD700;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.tracking-form::after {
+    content: '🏮';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 30px;
+    background: #FFD700;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.input-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tracking-input {
+    flex: 1;
+    min-width: 300px;
+    padding: 18px 25px;
+    font-size: 1.1rem;
+    border: 3px solid #FFD700;
+    border-radius: 15px;
+    background: #fff;
+    color: #333;
+    font-family: 'Noto Serif SC', serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.tracking-input:focus {
+    outline: none;
+    border-color: #FFA500;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.tracking-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Кнопка отслеживания */
+.track-button {
+    padding: 18px 35px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, #DC143C, #B22222);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Noto Serif SC', serif;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
+    border: 2px solid #FFD700;
+}
+
+.track-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(220, 20, 60, 0.6);
+}
+
+.track-button:active {
+    transform: translateY(-1px);
+}
+
+.button-decoration {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.track-button:hover .button-decoration {
+    left: 100%;
+}
+
+/* Результат отслеживания */
+.tracking-result {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 3px solid #FFD700;
+    margin-bottom: 40px;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.result-title {
+    font-size: 1.8rem;
+    color: #8B0000;
+    margin-bottom: 15px;
+}
+
+.tracking-number-display {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: inline-block;
+    color: #8B0000;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.label {
+    margin-right: 10px;
+}
+
+.number {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Шкала прогресса */
+.progress-container {
+    margin: 40px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 2px solid #FFD700;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+    position: relative;
+    will-change: width;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: progressShimmer 2s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.step-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.step.active .step-icon {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.step-text {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.step.active .step-text {
+    color: #8B0000;
+    font-weight: 600;
+}
+
+/* Метаданные партии */
+.batch-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px 0 10px;
+}
+.meta-item {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1rem;
+}
+.meta-label { color: #8B0000; font-weight: 600; }
+.meta-value { color: #333; font-weight: 600; }
+
+/* Текущий статус */
+.current-status {
+    text-align: center;
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border-radius: 15px;
+    color: #8B0000;
+}
+
+.current-status h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.status-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 3px solid #DC143C;
+    margin-bottom: 40px;
+    text-align: center;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.error-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.error-message p {
+    font-size: 1.1rem;
+    color: #DC143C;
+    font-weight: 600;
+}
+
+/* Информация о сервисе */
+.service-info {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 3px solid #FFD700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.service-info h3 {
+    color: #8B0000;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.service-info p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+/* Футер */
+.footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 40px 20px 20px;
+    margin-top: 60px;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.contact-info h4,
+.working-hours h4 {
+    color: #FFD700;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* Выравнивание колонок по сетке */
+.contact-info { justify-self: start; }
+.working-hours { justify-self: end; }
+
+.contact-info p,
+.working-hours p {
+    margin-bottom: 8px;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+.footer-bottom {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: #999;
+}
+
+/* Утилиты */
+.hidden {
+    display: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 100px 15px 30px;
+    }
+    
+    .logo {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 0 auto 30px;
+        width: fit-content;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .tracking-input {
+        min-width: auto;
+    }
+    
+    .progress-steps {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .step {
+        min-width: auto;
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .header,
+    .tracking-form,
+    .tracking-result {
+        padding: 25px 20px;
+    }
+    
+    .tracking-input,
+    .track-button {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+}
